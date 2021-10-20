@@ -4,7 +4,12 @@ const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
 
+const canDo1Button = document.getElementById('can-do-1-btn')
+const canDo2Button = document.getElementById('can-do-2-btn')
+
+
 let shuffledQuestions, currentQuestionIndex
+let questions
 
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () => {
@@ -12,12 +17,16 @@ nextButton.addEventListener('click', () => {
   setNextQuestion()
 })
 
+canDo1Button.addEventListener('click', setQuestion1)
+canDo2Button.addEventListener('click', setQuestion2)
+
 function startGame() {
   startButton.classList.add('hide')
-  shuffledQuestions = questions.sort(() => Math.random() - .5)
+  shuffledQuestions = questions // questions.sort(() => Math.random() - .5)
   currentQuestionIndex = 0
   questionContainerElement.classList.remove('hide')
   setNextQuestion()
+  console.log('Comecou o jogo...')
 }
 
 function setNextQuestion() {
@@ -76,23 +85,58 @@ function clearStatusClass(element) {
   element.classList.remove('wrong')
 }
 
-const questions = [
-  {
-    question: 'What is 2 + 2?',
-    answers: [
-      { text: '4', correct: true },
-      { text: '22', correct: false }
+
+function setQuestion1() {
+    questions = [
+      {
+        question: 'Olá, sou Sakura. Qual o seu nome?',
+        answers: [
+          { text: 'Me chamo Fernanda.', correct: true },
+          { text: 'Tenho 25 anos', correct: false },
+          { text: 'Sou do Brasil', correct: false },
+          { text: 'Moro no Rio de Janeiro', correct: false }
+        ]
+      },
+      {
+        question: 'Fernanda, prazer em te conhecer.',
+        answers: [
+          { text: 'De nada.', correct: false },
+          { text: 'Prazer em te conhecer também', correct: true },
+          { text: 'Até amanhã', correct: false },
+          { text: 'Obrigado', correct: false }
+        ]
+      }
     ]
-  },
-  {
-    question: 'Who is the best YouTuber?',
-    answers: [
-      { text: 'Web Dev Simplified', correct: true },
-      { text: 'Traversy Media', correct: true },
-      { text: 'Dev Ed', correct: true },
-      { text: 'Fun Fun Function', correct: true }
+    console.log('Entrou no 1')
+}
+
+function setQuestion2() {
+    questions = [
+      {
+        question: 'Você é de onde?',
+        answers: [
+          { text: 'Sou do Brasil', correct: true },
+          { text: 'Tenho 19 anos', correct: false },
+          { text: 'Me chamo Fernanda.', correct: false },
+          { text: 'Até amanhã', correct: false }
+        ]
+      },
+      {
+        question: 'Legal. Eu sou japonês. Você fala japonês?',
+        answers: [
+          { text: 'Até amanhã.', correct: false },
+          { text: 'Boa tarde.', correct: false },
+          { text: 'Moro em Belo Horizonte.', correct: false },
+          { text: 'Sim, eu falo.', correct: true }
+        ]
+      }
     ]
-  },
+    console.log('Entrou no 2')
+}
+
+
+
+questions = [
   {
     question: 'Is web development fun?',
     answers: [
@@ -100,13 +144,6 @@ const questions = [
       { text: 'YES!!!', correct: true },
       { text: 'Um no', correct: false },
       { text: 'IDK', correct: false }
-    ]
-  },
-  {
-    question: 'What is 4 * 2?',
-    answers: [
-      { text: '6', correct: false },
-      { text: '8', correct: true }
     ]
   }
 ]
