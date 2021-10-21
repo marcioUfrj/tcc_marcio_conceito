@@ -20,13 +20,20 @@ nextButton.addEventListener('click', () => {
 canDo1Button.addEventListener('click', setQuestion1)
 canDo2Button.addEventListener('click', setQuestion2)
 
+function resetStart(textStart, resetQuestion) {
+  if (resetQuestion == true) {
+    questionContainerElement.classList.add('hide')
+  }
+  startButton.innerText = textStart
+  startButton.classList.remove('hide')
+}
+
 function startGame() {
   startButton.classList.add('hide')
   shuffledQuestions = questions // questions.sort(() => Math.random() - .5)
   currentQuestionIndex = 0
   questionContainerElement.classList.remove('hide')
   setNextQuestion()
-  console.log('Comecou o jogo...')
 }
 
 function setNextQuestion() {
@@ -66,8 +73,9 @@ function selectAnswer(e) {
   if (shuffledQuestions.length > currentQuestionIndex + 1) {
     nextButton.classList.remove('hide')
   } else {
-    startButton.innerText = 'Restart'
-    startButton.classList.remove('hide')
+    //startButton.innerText = 'Restart'
+    //startButton.classList.remove('hide')
+    resetStart('Recomeçar', false)
   }
 }
 
@@ -107,7 +115,9 @@ function setQuestion1() {
         ]
       }
     ]
-    console.log('Entrou no 1')
+
+    resetStart('Começar', true)
+    resetState()
 }
 
 function setQuestion2() {
@@ -131,9 +141,10 @@ function setQuestion2() {
         ]
       }
     ]
-    console.log('Entrou no 2')
+    
+    resetStart('Começar', true)
+    resetState()
 }
-
 
 
 questions = [
