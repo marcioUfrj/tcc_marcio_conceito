@@ -3,22 +3,18 @@ const nextButton = document.getElementById('next-btn')
 const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
-
-const canDo1Button = document.getElementById('can-do-1-btn')
-const canDo2Button = document.getElementById('can-do-2-btn')
-
+const nivelElement = document.getElementById('choice-nivel')
+const choiceElement = document.getElementById('choice-lesson')
 
 let shuffledQuestions, currentQuestionIndex
 let questions
+let var_teste
 
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () => {
   currentQuestionIndex++
   setNextQuestion()
 })
-
-canDo1Button.addEventListener('click', setQuestion1)
-canDo2Button.addEventListener('click', setQuestion2)
 
 function resetStart(textStart, resetQuestion) {
   if (resetQuestion == true) {
@@ -30,7 +26,8 @@ function resetStart(textStart, resetQuestion) {
 
 function startGame() {
   startButton.classList.add('hide')
-  shuffledQuestions = questions // questions.sort(() => Math.random() - .5)
+  shuffledQuestions = setNivel(nivelElement.innerText, choiceElement.innerText) //questions // questions.sort(() => Math.random() - .5)
+  console.log(shuffledQuestions)
   currentQuestionIndex = 0
   questionContainerElement.classList.remove('hide')
   setNextQuestion()
@@ -94,8 +91,10 @@ function clearStatusClass(element) {
 }
 
 
-function setQuestion1() {
-    questions = [
+function setQuestionA1(choice) {
+  if (choice == 'can-do-1') {
+    console.log(choice)
+    output_question = [
       {
         question: 'Olá, sou Sakura. Qual o seu nome?',
         answers: [
@@ -115,13 +114,9 @@ function setQuestion1() {
         ]
       }
     ]
-
-    resetStart('Começar', true)
-    resetState()
-}
-
-function setQuestion2() {
-    questions = [
+  } else if (choice == 'can-do-2') {
+    console.log(choice)
+    output_question = [
       {
         question: 'Você é de onde?',
         answers: [
@@ -141,20 +136,51 @@ function setQuestion2() {
         ]
       }
     ]
-    
-    resetStart('Começar', true)
-    resetState()
+  }
+
+  return output_question
 }
 
 
-questions = [
-  {
-    question: 'Is web development fun?',
-    answers: [
-      { text: 'Kinda', correct: false },
-      { text: 'YES!!!', correct: true },
-      { text: 'Um no', correct: false },
-      { text: 'IDK', correct: false }
+function setQuestionA2(choice) {
+  if (choice == 'can-do-1') {
+    console.log(choice)
+    output_question = [
+      {
+        question: 'Bom dia, tudo bem?',
+        answers: [
+          { text: 'Bom dia, tudo bem.', correct: true },
+          { text: 'Boa tarde, tudo bem.', correct: false },
+          { text: 'Boa noite, tudo bem também.', correct: false },
+          { text: 'Bom dia, tudo bem também.', correct: false }
+        ]
+      }
+    ]
+  } else if (choice == 'can-do-2') {
+    console.log(choice)
+    output_question = [
+      {
+        question: 'Qual a sua profissão?',
+        answers: [
+          { text: 'Eu sou engenheiro.', correct: true },
+          { text: 'Eu sou brasileiro.', correct: false },
+          { text: 'Eu sou do Brasil.', correct: false },
+          { text: 'Eu sou magro.', correct: false }
+        ]
+      }
     ]
   }
-]
+
+  return output_question
+}
+
+function setNivel(nivel, choice) {
+  if (nivel == 'a1') {
+    return setQuestionA1(choice)
+  } else if (nivel == 'a2') {
+    return setQuestionA2(choice)
+  }
+}
+
+resetStart('Começar', true)
+resetState()
