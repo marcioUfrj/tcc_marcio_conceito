@@ -1,3 +1,5 @@
+@import 'shared/buttons.css';
+
 *, *::before, *::after {
   box-sizing: border-box;
   font-family: Gotham Rounded;
@@ -7,18 +9,21 @@
   --hue-neutral: 200;
   --hue-wrong: 0;
   --hue-correct: 145;
+  --color-danger-hue-offset: 180;
+  --hue-danger: calc(var(--hue-neutral) - var(--color-danger-hue-offset));
 }
 
 .home-link {
   text-decoration: none;
   color: white;
   font-size: 2.5rem;
-  margin: 0 2rem;
 }
 
 .nav-container {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
 
 
@@ -55,6 +60,17 @@ body.wrong {
   box-shadow: 0 0 10px 2px;
 }
 
+.container-exercise {
+  gap: 10px;
+  margin: 5px 0;
+}
+
+.container-question {
+  border: 1px solid;
+  border-radius: 5px;
+}
+
+/* GRIDs */
 .btn-grid {
   display: grid;
   grid-template-columns: repeat(1, auto);
@@ -62,51 +78,48 @@ body.wrong {
   margin: 20px 0;
 }
 
-.btn {
-  --hue: var(--hue-neutral);
-  border: 1px solid hsl(var(--hue), 100%, 30%);
-  background-color: hsl(var(--hue), 100%, 50%);
-  border-radius: 5px;
-  padding: 5px 10px;
-  color: white;
-  outline: none;
+.btn-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 10px;
+  margin: 20px 0;
 }
 
-.btn_can_do {
-  text-decoration: none;
-  --hue: var(--hue-neutral);
-  border: 1px solid hsl(var(--hue), 100%, 30%);
-  background-color: hsl(var(--hue), 100%, 50%);
-  border-radius: 5px;
-  padding: 5px 10px;
-  color: white;
-  outline: none;
+.txtarea-grid {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto 150px;
+  margin: 10px 0;
 }
 
-.btn:hover {
-  border-color: black;
+.input-grid {
+  display: grid;
+  grid-template-columns: 70px auto;
+  grid-template-rows: auto;
+  margin: 5px 0;
+  padding: 5px;
+  gap: 2px;
 }
 
-.btn.correct {
-  --hue: var(--hue-correct);
-  color: black;
+.input-grid.lf-col-nm-exercise {
+  grid-template-columns: 102px auto;
+  padding: 0;
 }
 
-.btn.wrong {
-  --hue: var(--hue-wrong);
+.input-grid.col-3 {  
+  grid-template-columns: 70px auto 20px;
+  grid-template-rows: repeat(5, auto);
 }
 
-.start-btn, .next-btn {
-  font-size: 1.5rem;
-  font-weight: bold;
-  padding: 10px 20px;
+
+/* CONFIGURACAO DE LABELS */
+.lb_margin {
+  margin: 5px 0;
 }
 
-.header-btn {
-  font-size: 1.5rem;
-  font-weight: bold;
-  padding: 10px 20px;
-  margin: 0 0.5rem;
+.lb_config {
+  display: inline-block;
+  text-align: right;
 }
 
 .controls {
@@ -115,6 +128,15 @@ body.wrong {
   align-items: center;
 }
 
+.text-area-config {
+  resize: none;
+}
+
+.input-config {
+
+}
+
+/* CONFIGURACAO GENERICA */
 .hide {
   display: none;
 }

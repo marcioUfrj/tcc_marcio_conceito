@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
+const { checkAuthenticated } = require('../basicAuth')
 
-router.get('/', (req, res) => {
+router.get('/', checkAuthenticated, (req, res) => {
   res.render('index')
 })
 

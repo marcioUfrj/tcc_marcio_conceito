@@ -1,0 +1,58 @@
+/* CONFIGURACAO DE BOTAO */
+.btn {
+  --hue: var(--hue-neutral);
+  border: 1px solid hsl(var(--hue), 100%, 30%);
+  border-radius: 5px;
+  padding: 5px 10px;
+  outline: none;
+  font-size: 1rem;
+  text-decoration: none;
+  text-align: center;
+}
+
+.btn-danger {
+  --hue: var(--hue-danger);
+  background-color: hsl(var(--hue), 100%, 50%);
+  color: white;
+}
+
+.btn-primary {
+  --hue: var(--hue-neutral);
+  background-color: hsl(var(--hue), 100%, 50%);
+  color: white;
+}
+
+.btn-l-margin {
+  margin-left: 20px;
+}
+
+.btn:hover {
+  border-color: black;
+  cursor: pointer;
+}
+
+.btn_can_do:hover {
+  border-color: black;
+}
+
+.btn.correct {
+  --hue: var(--hue-correct);
+  color: black;
+}
+
+.btn.wrong {
+  --hue: var(--hue-wrong);
+}
+
+.btn.start, .btn.next {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 10px 20px;
+}
+
+.header-btn {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin: 0 0.5rem;
+}

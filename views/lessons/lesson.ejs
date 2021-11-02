@@ -1,18 +1,27 @@
 <div class="container">
-  <h2>Nivel <%= nivel_name %>, <%= can_do_name %></h2>
-  <div id="choice-nivel" class="hide"><%= nivel_name %></div>
-  <div id="choice-lesson" class="hide"><%= can_do_name %></div>
-  <div id="question-container" class="hide">
-    <div id="question">Question</div>
-    <div id="answer-buttons" class="btn-grid">
-      <button class="btn">Answer 1</button>
-      <button class="btn">Answer 2</button>
-      <button class="btn">Answer 3</button>
-      <button class="btn">Answer 4</button>
+  <h2>Nivel <%= canDo.level %>, <%= canDo.name %></h2>
+  <div id="choice-nivel" class="hide"><%= canDo.level %></div>
+  <div id="choice-lesson" class="hide"><%= canDo.id %></div>
+  <div id="question-index" class="hide"><%= i_question %></div>
+  <div id="state" class="hide"><%= in_state %></div>
+  <div id="exercise-name"><%= exercise.name %></div>
+  <div id="description"><%= exercise.description %></div>
+  <% if (in_state != 'preparation') { %>
+    <br>
+    <div id="question-container" class="<%= showQuestion %>">
+      <div id="question"><%= question.question %></div>
+      <div id="answer-buttons" class="btn-grid">
+        <button class="btn btn-primary" data-correct="<%= question.answers[0].correct %>"><%= question.answers[0].text %></button>
+        <button class="btn btn-primary" data-correct="<%= question.answers[1].correct %>"><%= question.answers[1].text %></button>
+        <button class="btn btn-primary" data-correct="<%= question.answers[2].correct %>"><%= question.answers[2].text %></button>
+        <button class="btn btn-primary" data-correct="<%= question.answers[3].correct %>"><%= question.answers[3].text %></button>
+      </div>
     </div>
-  </div>
+  <% } %>
+  <br>
   <div class="controls">
-    <button id="start-btn" class="start-btn btn">Começar</button>
-    <button id="next-btn" class="next-btn btn hide">Próxima</button>
+    <a href="/lessons/<%= canDo.level %>/<%= canDo.name %>/<%= exercise.id %>/<%= i_question %>" id="start-btn" class="btn btn-primary">Começar exercício</a>
+    <a href="/lessons/<%= canDo.level %>/<%= canDo.name %>" id="skip-btn" class="btn btn-primary btn-l-margin">Pular exercício</a>
+    <a href="/lessons/<%= canDo.level %>/<%= canDo.name %>/<%= exercise.id %>/<%= i_question + 1 %>" id="next-btn" class="btn btn-primary btn-l-margin hide">Próxima questão</a>
   </div>
 </div>

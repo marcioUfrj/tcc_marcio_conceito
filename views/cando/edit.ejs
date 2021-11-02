@@ -1,0 +1,27 @@
+<div class="container">
+  <div id="question-container">
+    <h2>Editar Can-do</h2>
+    <form action="/cando/<%= in_canDo.id %>?_method=PUT" method="POST">
+      <%- include('_form_fields') %>
+      <div class="btn-grid-2">
+        <a href="/cando" class="btn btn-danger">Cancelar</a>
+        <button type="submit" class="btn btn-primary">Atualizar</button>
+      </div>
+    </form>
+  </div>
+  <div id="exercise-container">
+    <h2>Lista de Exercícios</h2>
+    <div>
+      <a href="/cando/<%= in_canDo.id %>/edit/new-exercise" class="btn btn-primary">Novo exercício</a>
+    </div>
+    </br>
+    <div>
+      <% in_exercises.forEach(in_exercise => { %>
+        <div>
+          <span><%= in_exercise.name %> |</span>
+          <a href="/cando/<%= in_canDo.id %>/edit/edit-exercise/<%= in_exercise.id %>">Editar</a>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</div>

@@ -2,8 +2,9 @@
   <div id="question-container">
     <div id="question">Lista de Can-do <%= nivel_name %>  </div>
     <div id="answer-buttons" class="btn-grid">
-      <a href="/lessons/<%= nivel_name %>/can-do-1" class="btn_can_do">Can-do 1</a>
-      <a href="/lessons/<%= nivel_name %>/can-do-2" class="btn_can_do">Can-do 2</a>
+      <% canDos.forEach(canDo => { %>
+        <a href="/lessons/<%= canDo.level %>/<%= canDo.name %>" class="btn btn-primary"><%= canDo.name %></a>
+      <% }) %>
     </div>
   </div>
 </div>

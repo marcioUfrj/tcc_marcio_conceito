@@ -1,0 +1,32 @@
+<div class="container">
+  <div id="question-container">
+    <h2>Cadastro de novo Can-do</h2>
+    <form action="/cando" method="POST">
+      <%- include('_form_fields') %>
+      <div id="answer-buttons">
+        <a href="/cando" class="btn btn-danger">Cancelar</a>
+        <button type="submit" class="btn btn-primary">Criar</button>
+      </div>
+    </form>
+  </div>
+  </br>
+  <div id="search_container">
+    <h2>Consulta de Can-do por nível</h2>
+    <form action="/cando" method="GET">
+      <div id="answer-buttons">
+        <label>Level Name</label>
+        <input type="text" name="level_search" value="<%= searchOptions.level_search %>">
+        <button type="submit" class="btn btn-primary">Procurar</button>
+      </div>
+    </form>
+    <div>
+      <% canDos.forEach(canDo => { %>
+        <div class="lb_margin">
+          <span><%= canDo.level %> | <%= canDo.lesson %> | <%= canDo.name %> | <%= canDo.number %> |</span>
+          <a href="/cando/<%= canDo.id %>/edit">Edit</a>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+  
+</div>

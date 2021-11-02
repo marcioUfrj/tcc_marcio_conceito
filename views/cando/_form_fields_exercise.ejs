@@ -1,0 +1,40 @@
+<div>
+  <label>Name Level: <%= in_canDo.level %></label>
+</div>
+<div>
+  <label>Name Can-Do: <%= in_canDo.name %></label>
+</div>
+<div class="input-grid lf-col-nm-exercise">
+  <label class="lb_config">Name Exercise:</label>
+  <input type="text" name="name" value="<%= in_exercise.name %>">
+</div>
+<div class="txtarea-grid">
+  <label>Description Exercise</label>
+  <textarea name="description" class="text-area-config"><%= in_exercise.description %></textarea>
+</div>
+<div class="container-exercise">
+  <% for( let i = 1; i <= 6; i++) { %>
+  <div class="container-question input-grid col-3">
+      <label class="lb_config">Questão <%= i %></label>
+      <input type="text" name="question<%= i %>" 
+        <% if (i <= in_exercise.questions.length) { %>
+          value="<%= in_exercise.questions[i - 1].question %>"
+        <% } %>
+      >
+      <div>
+      </div>
+      <% for (let j = 1; j <= 4; j++) { %>
+        <label class="lb_config">Resposta <%= j %></label>
+        <input type="text" name="question<%= i %>answer<%= j %>" 
+          <% if(i <= in_exercise.questions.length && j <= in_exercise.questions[i - 1].answers.length) { %>
+            value="<%= in_exercise.questions[i - 1].answers[j - 1].text %>"
+          <% } %>
+        >
+        <input type="checkbox" name="cb_question<%= i %>answer<%= j %>" value="true" 
+        <% if(i <= in_exercise.questions.length && j <= in_exercise.questions[i - 1].answers.length && in_exercise.questions[i - 1].answers[j - 1].correct) { %>
+          checked="<%= false %>"
+        <% } %>>
+      <% } %>
+    </div>
+  <% } %>
+</div>
