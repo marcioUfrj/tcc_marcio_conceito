@@ -1,6 +1,12 @@
 <div class="container">
   <div id="question-container">
-    <div id="question">Página inicial da aplicacao</div>
-    <div>
-    </div>
+    <div>Página principal de <%= user.nickname %></div>
+    <% if(user.role === role.ADMIN) { %>
+      <div><h2>Área de administrador</h2>
+      </div>
+      <div>
+        <a href="/cando">Edição de Can-Dos e Exercícios</a>
+      </div>
+    <% } %>
+  </div>
 </div>

@@ -49,3 +49,32 @@ app.use('/cando', candoRouter)
 app.use('/login', loginRouter)
 
 app.listen(process.env.PORT || 4400)
+
+/*
+
+USER PERMITION
+  1. implementar
+  2. ocultar CAN-DO de usuarios
+
+EXERCICIOS para Determinado Can-do
+  Modelagem
+    1 exercicio = [simple task]
+    1 exercicio = 1 complex task = [simple step]
+
+  1. base com dados de desempenho: execucao
+    {
+      id_execucao: ,
+      user_id: , 
+      exercise: { 
+        id: ,
+        #correct questions/steps: ,
+        #total questions/steps: 
+      }
+      date_done: 
+    }
+
+PAGINA PRINCIPAL
+  Performance Por Can-Do
+    
+
+*/

@@ -15,7 +15,8 @@ router.get('/:id_nivel', checkAuthenticated, async (req, res) => {
     //res.send('Lista de Can-do do ' + req.params.id)
     res.render('lessons/nivel', {
       nivel_name: req.params.id_nivel,
-      canDos: canDos
+      canDos: canDos,
+      idUser: req.user.id
     })
   } catch {
     res.redirect('/lessons')

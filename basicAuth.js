@@ -15,5 +15,16 @@ function checkNotAuthenticated(req, res, next) {
   next()
 }
 
+function authRole(role) {
+  return (req, res, next) => {
+    if (req.user.role !== role) {
+      res.status(401)
+      return res.send('Not allowed')
+    }
 
-module.exports = { checkAuthenticated, checkNotAuthenticated }
+    return next()
+  }
+}
+
+
+module.exports = { checkAuthenticated, checkNotAuthenticated, authRole }

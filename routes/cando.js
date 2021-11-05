@@ -2,10 +2,11 @@ const express = require('express')
 const router = express.Router()
 const CanDo = require('../models/cando')
 const Exercise = require('../models/exercise')
-const { checkAuthenticated } = require('../basicAuth')
+const { checkAuthenticated, authRole } = require('../basicAuth')
+const { ROLE } = require('../variables')
 
 //Pagina inicial
-router.get('/', checkAuthenticated, async (req, res) => {
+router.get('/', checkAuthenticated, authRole(ROLE.ADMIN), async (req, res) => {
   let searchOptions = {}
   if (req.query.level_search != null && req.query.level_search !== '') {
     searchOptions.level = new RegExp(req.query.level_search, 'i')
@@ -24,7 +25,7 @@ router.get('/', checkAuthenticated, async (req, res) => {
 
 
 // Create New Can-do
-router.post('/', checkAuthenticated, async (req, res) => {
+router.post('/', checkAuthenticated, authRole(ROLE.ADMIN), async (req, res) => {
   const in_cando = new CanDo({
     number: req.body.number,
     name: req.body.name,
@@ -55,7 +56,7 @@ router.get('/:id/edit', checkAuthenticated, async (req, res) => {
 })
 
 // Update Can-do
-router.put('/:id', checkAuthenticated, async (req, res) => {
+router.put('/:id', checkAuthenticated, authRole(ROLE.ADMIN), async (req, res) => {
   let in_canDo
   try {
     in_canDo = await CanDo.findById(req.params.id)
@@ -76,7 +77,7 @@ router.put('/:id', checkAuthenticated, async (req, res) => {
 })
 
 // Create New Can-do Exercise
-router.get('/:id/edit/new-exercise', checkAuthenticated, async (req, res) => {
+router.get('/:id/edit/new-exercise', authRole(ROLE.ADMIN), checkAuthenticated, async (req, res) => {
   try {
     const in_canDo = await CanDo.findById(req.params.id)
     res.render('cando/new_exercise', { 
@@ -89,7 +90,7 @@ router.get('/:id/edit/new-exercise', checkAuthenticated, async (req, res) => {
 })
 
 // Edit Can-do Exercise
-router.get('/:id/edit/edit-exercise/:idExercise', checkAuthenticated, async (req, res) => {
+router.get('/:id/edit/edit-exercise/:idExercise', checkAuthenticated, authRole(ROLE.ADMIN), async (req, res) => {
   try {
     const in_canDo = await CanDo.findById(req.params.id)
     const in_exercise = await Exercise.findById(req.params.idExercise)
@@ -103,7 +104,7 @@ router.get('/:id/edit/edit-exercise/:idExercise', checkAuthenticated, async (req
 })
 
 // Update Can-do Exercise
-router.put('/:id/edit/edit-exercise/:idExercise', checkAuthenticated, async (req, res) => {
+router.put('/:id/edit/edit-exercise/:idExercise', checkAuthenticated, authRole(ROLE.ADMIN), async (req, res) => {
   let in_exercise
   let in_canDo
   try {
@@ -128,7 +129,7 @@ router.put('/:id/edit/edit-exercise/:idExercise', checkAuthenticated, async (req
 })
 
 // Insert New Can-do Exercise
-router.post('/:id/edit/new-exercise', checkAuthenticated, async (req, res) => {
+router.post('/:id/edit/new-exercise', checkAuthenticated, authRole(ROLE.ADMIN), async (req, res) => {
   let in_canDo
   const in_exercise = new Exercise({
     name: req.body.name,

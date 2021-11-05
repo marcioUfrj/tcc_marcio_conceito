@@ -4,6 +4,7 @@ const User = require('../models/user')
 const bcrypt = require('bcrypt')
 const passport = require('passport')
 const { checkNotAuthenticated } = require('../basicAuth')
+const { ROLE } = require('../variables')
 
 const initializePassport = require('../passport-config')
 initializePassport(
@@ -29,10 +30,9 @@ async function getUserById(idUser) {
     return null
   }
 }
-let users = []
 
 router.get('/', checkNotAuthenticated, (req, res) => {
-  res.render('login/login')
+  res.render('login/login', { inUser: new User()})
 })
 
 router.post('/', checkNotAuthenticated, passport.authenticate('local', {
@@ -43,23 +43,29 @@ router.post('/', checkNotAuthenticated, passport.authenticate('local', {
 )
 
 router.get('/register', checkNotAuthenticated, (req, res) => {
-  res.render('login/register')
+  res.render('login/register', { inUser: new User(), messageError: ''})
 })
 
 router.post('/register', checkNotAuthenticated, async (req, res) => {
+  let user
   try {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10)
-    const user = new User({
+    user = new User({
       nickname: req.body.name,
       email: req.body.email,
-      password: hashedPassword
+      role: ROLE.BASIC
     })
-    const newUser = user.save()
-    res.redirect('/login')
+    const checkEmail = await User.find({ email: req.body.email }, { email: 1 })
+    if (checkEmail.length == 0) {
+      const hashedPassword = await bcrypt.hash(req.body.password, 10)
+      user.password = hashedPassword
+      const newUser = await user.save()
+      res.redirect('/login')
+    } else {
+      res.render('login/register', { inUser: user, errorMessage: 'Email já cadastrado.' })
+    }
   } catch{
-    res.redirect('/login/register')
+    res.render('login/register', { inUser: user, errorMessage: 'Erro no servidor ao cadastrar, favor tentar novamente.' })
   }
-  console.log(users)
 })
 
 router.delete('/logout', (req, res) => {
