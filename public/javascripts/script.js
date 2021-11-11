@@ -74,7 +74,7 @@ function selectAnswer(e) {
   })
 
   if(stateElement.innerText == 'end')  {
-    skipButton.classList.add('hide')
+    skipButton.innerHTML = 'Próximo Exercício'
     resetStart('Recomeçar', false)
   } else {    
     nextButton.classList.remove('hide')

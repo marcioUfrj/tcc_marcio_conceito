@@ -108,13 +108,18 @@ router.put('/:id/edit/edit-exercise/:idExercise', checkAuthenticated, authRole(R
   let in_exercise
   let in_canDo
   try {
+    //const upOne = await Exercise.updateOne({ id: req.params.idExercise }, 
+    //  { $set: { index_val: parseInt(req.body.indexVal)}})
+    
     in_exercise = await Exercise.findById(req.params.idExercise)
     
     in_exercise.cando_id = req.params.id
+    in_exercise.index_val = parseInt(req.body.indexVal),
     in_exercise.name = req.body.name
     in_exercise.description = req.body.description    
     in_exercise.questions = getQuestions(req.body)
     
+    console.log('Update exercise: ' + in_exercise)
     const editExercise = await in_exercise.save()
     res.redirect(`/cando/${req.params.id}/edit`)
   } catch {
@@ -133,6 +138,7 @@ router.post('/:id/edit/new-exercise', checkAuthenticated, authRole(ROLE.ADMIN), 
   let in_canDo
   const in_exercise = new Exercise({
     name: req.body.name,
+    index_val: parseInt(req.body.index_val),
     description: req.body.description,
     questions: getQuestions(req.body),
     cando_id: req.params.id

@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const exerciseSchema = new mongoose.Schema({
+  index_val: {
+    type: Number,
+    required: true
+  },
   name: {
     type: String,
     required: true

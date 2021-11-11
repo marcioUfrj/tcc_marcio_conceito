@@ -8,6 +8,10 @@
   <label class="lb_config">Name Exercise:</label>
   <input type="text" name="name" value="<%= in_exercise.name %>">
 </div>
+<div>
+  <label class="lb_config">Index Exercise:</label>
+  <input type="number" name="indexVal" min="0" step="1" value="<%= in_exercise.index_val %>">
+</div>
 <div class="txtarea-grid">
   <label>Description Exercise</label>
   <textarea name="description" class="text-area-config"><%= in_exercise.description %></textarea>

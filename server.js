@@ -52,10 +52,6 @@ app.listen(process.env.PORT || 4400)
 
 /*
 
-USER PERMITION
-  1. implementar
-  2. ocultar CAN-DO de usuarios
-
 EXERCICIOS para Determinado Can-do
   Modelagem
     1 exercicio = [simple task]
@@ -73,8 +69,9 @@ EXERCICIOS para Determinado Can-do
       date_done: 
     }
 
+  Preencher com os to-dos
+  
 PAGINA PRINCIPAL
-  Performance Por Can-Do
-    
+  Performance Por Can-Do    
 
 */

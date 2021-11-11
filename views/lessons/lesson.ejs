@@ -20,8 +20,8 @@
   <% } %>
   <br>
   <div class="controls">
-    <a href="/lessons/<%= canDo.level %>/<%= canDo.name %>/<%= exercise.id %>/<%= i_question %>" id="start-btn" class="btn btn-primary">Começar exercício</a>
-    <a href="/lessons/<%= canDo.level %>/<%= canDo.name %>" id="skip-btn" class="btn btn-primary btn-l-margin">Pular exercício</a>
-    <a href="/lessons/<%= canDo.level %>/<%= canDo.name %>/<%= exercise.id %>/<%= i_question + 1 %>" id="next-btn" class="btn btn-primary btn-l-margin hide">Próxima questão</a>
+    <a href="/lessons/<%= canDo.level %>/<%= canDo.id %>/<%= i_exercise %>/<%= i_question %>" id="start-btn" class="btn btn-primary">Começar exercício</a>
+    <a href="/lessons/<%= canDo.level %>/<%= canDo.id %>/<%= i_exercise + 1 %>" id="skip-btn" class="btn btn-primary btn-l-margin">Pular exercício</a>
+    <a href="/lessons/<%= canDo.level %>/<%= canDo.id %>/<%= i_exercise %>/<%= i_question + 1 %>" id="next-btn" class="btn btn-primary btn-l-margin hide">Próxima questão</a>
   </div>
 </div>
