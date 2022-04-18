@@ -5,34 +5,26 @@ if (process.env.NODE_ENV !== 'production') {
 // VARIAVEIS DO SISTEMA
 const express = require('express')
 const app = express()
-const expressLayouts = require('express-ejs-layouts')
 const methodOverride = require('method-override')
-const passport = require('passport')
-const flash = require('express-flash')
-const session = require('express-session')
+const cors = require('cors')
 
 const indexRouter = require('./routes/index')
-const lessonRouter = require('./routes/lessons')
-const candoRouter = require('./routes/cando')
-const loginRouter = require('./routes/login')
+const candoRouter = require('./routes/candos')
+const exerciseRouter = require('./routes/exercises')
+const reportRouter = require('./routes/reports')
+const userRouter = require('./routes/users')
 
 //CONFIGURACOES
-app.set('view engine', 'ejs') 
-app.set('views', __dirname + '/views')
-app.set('layout', 'layouts/layout')
-app.use(expressLayouts)
 app.use(methodOverride('_method'))
 app.use(express.static('public'))
 app.use(express.urlencoded({limit: '10mb', extended: false}))
 app.use(express.json()) // API : post
-app.use(flash())
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false
-}))
-app.use(passport.initialize())
-app.use(passport.session())
+
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+)
 
 const mongoose = require('mongoose')
 mongoose.connect(process.env.DATABASE_URL, { 
@@ -44,11 +36,12 @@ db.once('open', () => console.log('Connected to Mongoose'))
 
 // ROTAS
 app.use('/', indexRouter)
-app.use('/lessons', lessonRouter)
-app.use('/cando', candoRouter)
-app.use('/login', loginRouter)
+app.use('/candos', candoRouter)
+app.use('/exercises', exerciseRouter)
+app.use('/reports', reportRouter)
+app.use('/users', userRouter)
 
-app.listen(process.env.PORT || 4400)
+app.listen(process.env.PORT || 4000)
 
 /*
 
@@ -57,7 +50,13 @@ EXERCICIOS para Determinado Can-do
     1 exercicio = [simple task]
     1 exercicio = 1 complex task = [simple step]
 
-  1. base com dados de desempenho: execucao
+  1. base com dados da execucao do exercicio
+    Quais dados para avaliar fluência e memória
+    {
+
+    }
+
+    Modelo:
     {
       id_execucao: ,
       user_id: , 

@@ -5,15 +5,23 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  password: {
+  nivelCEFR: {
     type: String,
     required: true
   },
-  email: {
+  nivelJLPT: {
+    type: String,
+    required: true
+  },
+  nivelShirai: {
     type: String,
     required: true
   },
   role: {
+    type: String,
+    required: true
+  },
+  loginId: {
     type: String,
     required: true
   },

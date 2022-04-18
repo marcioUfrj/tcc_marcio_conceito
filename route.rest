@@ -1,0 +1,206 @@
+GET http://localhost:4000/candos/
+###
+
+GET http://localhost:4000/candos/ByLevel/B1
+###
+
+POST http://localhost:4000/candos/
+Content-Type: application/json
+
+{
+  "number": 1,
+    "name": "name can-do",
+    "lesson": "lesson can-do",
+    "level": "B1"
+}
+###
+
+PUT http://localhost:4000/candos/624da61957237cfac075b841
+Content-Type: application/json
+
+{
+  "number": 2,
+  "name": "name can-do2",
+  "lesson": "lesson can-do2",
+  "level": "B1"
+}
+###
+
+DELETE http://localhost:4000/candos/624da61957237cfac075b841
+
+###
+
+GET http://localhost:4000/exercises/
+###
+
+GET http://localhost:4000/exercises/624e110bcc50bdb65ac2b64a
+###
+
+GET http://localhost:4000/exercises/ByCanDo/624e10f9cc50bdb65ac2b648
+###
+
+POST http://localhost:4000/exercises/
+Content-Type: application/json
+
+{
+  "name": "nome exercicio 2",
+  "indexVal": 2,
+  "description": "descricao exercicio 2",
+  "questions": [
+    {
+      "question": "Horário: 19:00 da noite",
+      "answers": [
+        { "text": "Ohayou gozaimasu, sensei.", 
+          "correct": true },
+        { "text": "Konnichiha, sensei.", 
+          "correct": false },
+        { "text": "Konbanha, sensei.", 
+          "correct": false },
+        { "text": "Sayonara, sensei.", 
+          "correct": false }
+      ]
+    },
+    {
+      "question": "Horário: 22:00 da noite",
+      "answers": [
+        { "text": "Ohayou gozaimasu, sensei.", 
+          "correct": false },
+        { "text": "Konnichiha, sensei.", 
+          "correct": true },
+        { "text": "Konbanha, sensei.", 
+          "correct": false },
+        { "text": "Sayonara, sensei.", 
+          "correct": false }
+      ]
+    }
+  ],
+  "idCanDo": "624e10f9cc50bdb65ac2b648"
+}
+###
+
+PUT http://localhost:4000/exercises/624e110bcc50bdb65ac2b64a
+Content-Type: application/json
+
+{
+  "name": "nome exercicio",
+  "indexVal": 2,
+  "description": "descricao exercicio",
+  "questions": [
+    {
+      "question": "Horário: 8:00 da manhã",
+      "answers": [
+        { "text": "Ohayou gozaimasu, sensei.", 
+          "correct": true },
+        { "text": "Konnichiha, sensei.", 
+          "correct": false },
+        { "text": "Konbanha, sensei.", 
+          "correct": false },
+        { "text": "Sayonara, sensei.", 
+          "correct": false }
+      ]
+    },
+    {
+      "question": "Horário: 14:00 da tarde",
+      "answers": [
+        { "text": "Sayonara, sensei.", 
+          "correct": false },
+        { "text": "Konbanha, sensei.", 
+          "correct": false },
+        { "text": "Konnichiha, sensei.", 
+          "correct": true },
+        { "text": "Ohayou gozaimasu, sensei.", 
+          "correct": false }
+      ]
+    }
+  ],
+  "idCanDo": "624e10f9cc50bdb65ac2b648"
+}
+###
+
+DELETE http://localhost:4000/exercises/624da779809b2f2bcd031173
+
+
+
+###
+
+
+
+GET http://localhost:4000/reports/
+###
+
+GET http://localhost:4000/reports/625046b7efb16e2ea84e4c2b
+###
+
+POST http://localhost:4000/reports/
+Content-Type: application/json
+
+{
+  "answers": [
+    {
+      "idAnswerSelected": "624e110bcc50bdb65ac2b64c",
+      "idQuestion": "624e110bcc50bdb65ac2b64b",
+      "idExercise": "624e110bcc50bdb65ac2b64a"
+    },
+    {
+      "idAnswerSelected": "624e110bcc50bdb65ac2b653",
+      "idQuestion": "624e110bcc50bdb65ac2b650",
+      "idExercise": "624e110bcc50bdb65ac2b64a"
+    },
+    {
+      "idAnswerSelected": "624ee0b2ce17e94b1c17d5ad",
+      "idQuestion": "624ee0b2ce17e94b1c17d5ac",
+      "idExercise": "624ee0b2ce17e94b1c17d5ab"
+    },
+    {
+      "idAnswerSelected": "624ee0b2ce17e94b1c17d5b5",
+      "idQuestion": "624ee0b2ce17e94b1c17d5b1",
+      "idExercise": "624ee0b2ce17e94b1c17d5ab"
+    }
+  ]
+}
+###
+###
+
+DELETE http://localhost:4000/reports/62504626abf84cbe1ec91583
+###
+
+DELETE http://localhost:4000/reports/ByCanDo/624e10f9cc50bdb65ac2b648
+
+
+###
+
+
+
+GET http://localhost:4000/users/
+###
+
+GET http://localhost:4000/users/625a048fc8bd070e30175381
+###
+
+GET http://localhost:4000/users/ByLoginId/9r4ujTKnq0QzcPaC9PS2MJEIsh92
+###
+
+POST http://localhost:4000/users/
+Content-Type: application/json
+
+{
+  "nickname": "dummy",
+  "nivelCEFR": "A1",
+  "nivelJLPT": "N5",
+  "nivelShirai": "DAI1",
+  "role": "basic",
+  "loginId": "9r4ujTKnq0QzcPaC9PS2MJEIsh92"
+}
+###
+PUT http://localhost:4000/users/ByLoginId/9r4ujTKnq0QzcPaC9PS2MJEIsh92
+Content-Type: application/json
+
+{
+  "nickname": "tsukimi",
+  "nivelCEFR": "B1",
+  "nivelJLPT": "N3",
+  "nivelShirai": "DAI10"
+}
+###
+
+DELETE http://localhost:4000/users/625b45d5adcf5f53f2efdd42
