@@ -15,6 +15,7 @@ const reportRouter = require('./routes/reports')
 const userRouter = require('./routes/users')
 
 //CONFIGURACOES
+// tentando fazer push
 app.use(methodOverride('_method'))
 app.use(express.static('public'))
 app.use(express.urlencoded({limit: '10mb', extended: false}))
