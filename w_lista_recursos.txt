@@ -1,0 +1,209 @@
+npm
+node.js
+ejs
+  - permite criar layouts
+  - evita de repetir o mesmo codigo para TODAS AS paginas
+git
+mongoDB
+moongose
+MySQL
+
+
+// COMMANDOS
+Pacotes npm
+npm init
+  apertar "enter" até finalizar a "instalação" do npm init que vai criar o
+  package.json
+
+npm i express ejs express-ejs-layouts
+  express (servidor)
+  ejs (template)
+  express-ejs-layouts (permite criar um layout para os arquivos HTML)
+
+npm i --save-dev nodemon
+  -dev developer dependency
+  nodemon permite que o sistema reinicialize toda vez que ocorrer mudança nos códigos
+
+// ATUALIZAR package.json
+  "main": "server.js"
+
+  scripts:
+    "start": "node server.js",
+    "devStart": "nodemon server.js"
+
+// CRIAR ARQUIVO server.js
+  const express = require('express')
+  const app = express()
+  const expressLayouts = require('express-ejs-layouts')
+
+  app.set('view engine', 'ejs')
+  app.set('views', __dirname + '/views')
+  app.set('layout', 'layouts/layout')
+  app.use(expressLayouts)
+  app.use(express.static('public'))
+  app.use(express.json())
+
+
+  app.listen(process.env.PORT || 3000)
+
+// CRIAR PASTAS
+  views
+  public
+
+// COMANDO PARA INICIALIZAR SERVIDOR
+npm run devStart
+
+// CRIAR ROTAS
+  criar pasta: routes
+  criar index.js (routes)
+    const express = require('express')
+    const router = express.Router()
+
+    router.get('/', (req, res) => {
+      res.send('funcionando')
+    })
+
+    module.exports = router
+  
+  adicionar server.js
+    // VARIAVEIS DO SISTEMA
+    const indexRouter = require('./routes/index')
+
+    // Rotas
+      app.use('/', indexRouter)
+
+// CRIAR LAYOUTS
+  criar index.ejs (views)
+  criar pasta dentro de views: layouts
+    criar layout.ejs (layouts)
+      !
+      <%- body %>
+
+// INTEGRAR BANCO DE DADOS
+  mongoDB
+    npm i mongoose
+
+  adicionar server.js
+    // ANTES DE VARIAVEIS DO SISTEMA
+    if (process.env.NODE_ENV !== 'production') {
+      require('dotenv').config()
+    }
+
+    // CONFIGURACOES  
+      const mongoose = require('mongoose')
+      mongoose.connect(process.env.DATABASE_URL, { 
+        useNewUrlParser: true,
+        useUnifiedTopology: true})
+      const db = mongoose.connection
+      db.on('error', error => console.error(error))
+      db.once('open', () => console.log('Connected to Mongoose'))
+
+  variaveis de ambiente comando:
+    npm i --save-dev dotenv
+
+    criar .env
+      DATABASE_URL=mongodb://localhost/database_name
+
+// CRIAR MODELOS
+  criar pasta: models
+
+
+// GIT
+  comando
+    git init
+
+  criar .gitignore
+    .env
+    node_modules
+
+  git add -n .
+  git add .
+
+  se adicionar coisa errada
+    git rm -r --cached .
+  
+  copiar do github da pasta desejada: git@github.com:marcioUfrj/tcc_marcio.git
+    git remote add origin git@github.com:marcioUfrj/tcc_marcio.git
+
+  git commit -m "message..."
+  
+  git push -u origin main
+
+// HEROKU
+baixar e instalar heroku cli (se ainda n estiver instalado no pc)
+
+If you haven't already, log in to your Heroku account and follow the prompts to create a new SSH public key.
+$ heroku login
+
+Initialize a git repository in a new or existing directory
+$ heroku git:remote -a tccmarcio(heroku app name)
+
+If you want to deploy code to Heroku from a non-main branch of your local repository (for example, testbranch), use the following syntax to ensure it is pushed to the remote’s main branch:
+$ git push heroku testbranchname:main
+
+To reset/purge an app’s Heroku Git repository, use the heroku-repo CLI plugin:
+heroku plugins:install heroku-repo
+heroku repo:reset --app appname
+
+//ATLAS mongoDB
+connect
+  create new user
+    user
+    senha aleatoria (copiar para n perder)
+  
+  choose a connection method
+    connect your application
+      COPY connection_string_only
+
+colar connection_string_only na variavel de sistema no heroku
+  alterar <password> para o pass gerado anteriormente
+
+// BODY-PARSER
+npm i body-parser
+	// CONFIGURACOES
+	app.use(express.urlencoded({limit: '10mb', extended: false}))
+
+// multipart
+npm i multipart
+
+// METHOD-OVERRIDE
+  allows us to take a 'post' form, send to our server with a special parameter that tell us if we are going
+  to make a 'put' or 'delete' request. And our server will be smart enough to call the corresponding 'put' and
+  'delete' routes inside 'router_name.js' based on that spefic parameter
+npm i method-override
+
+adicionar em 'server.js'
+	const methodOverride = require('method-override') //abaixo de ejs-layouts
+	app.use(methodOverride('_method'))		  //abaixo de app.use(expressLayouts)
+
+// BCRYPT
+npm i bcrypt
+
+	//VARIAVEIS DO SISTEMA
+	const bcrypt = require('bcrypt')
+	
+
+
+npm WARN javascript-quiz-app@1.0.0 No description
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@2.3.2 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.3.2: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
+// PASSPORT
+flash: exibir mensagens se o login falhar. flash eh uma variavel dentro de passport
+npm i passport passport-local express-session express-flash
+
+criar passport.js (RAIZ: msm dir q server.js)
+	function initialize(passport) {
+		
+	}
+
+	//VARIAVEIS DO SISTEMA
+	const flash = require('flash')
+	const session = require('session')
+	
+	//CONFIGURACOES
+	
+
+	//.env
+	SESSION_SECRECT=secrect
+	

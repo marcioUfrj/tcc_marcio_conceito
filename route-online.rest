@@ -1,0 +1,233 @@
+GET https://tccmarcioconceito.herokuapp.com/
+###
+
+GET https://tccmarcioconceito.herokuapp.com/candos/
+###
+
+GET https://tccmarcioconceito.herokuapp.com/candos/ByLevel/B1
+###
+
+POST https://tccmarcioconceito.herokuapp.com/candos/
+Content-Type: application/json
+
+{
+  "number": 18,
+    "name": "Ler sobre o que alguém fez em uma viagem",
+    "lesson": "Lição 18",
+    "level": "A1"
+}
+###
+
+PUT https://tccmarcioconceito.herokuapp.com/candos/62b9d72d8c02c34b14723195
+Content-Type: application/json
+
+{
+  "number": 1,
+  "name": "Reconhecer caracteres japoneses: Hiragana",
+  "lesson": "Lição 1",
+  "level": "A1"
+}
+###
+
+DELETE https://tccmarcioconceito.herokuapp.com/candos/625d6774579f39e268934c12
+
+###
+
+GET https://tccmarcioconceito.herokuapp.com/exercises/
+###
+
+GET https://tccmarcioconceito.herokuapp.com/exercises/62bafaa65e96f81090d44305
+###
+
+GET https://tccmarcioconceito.herokuapp.com/exercises/ByCanDo/62b9d7cc8c02c34b1472319e
+###
+
+POST https://tccmarcioconceito.herokuapp.com/exercises/
+Content-Type: application/json
+
+{
+  "indexVal": 4,
+  "name": "Leia a apresentação abaixo e responda as questões.",
+  "description": "わたしは　のだです。にほんじんです。かいしゃいんです。えいごが　できます。フランスごも　できます。どうぞ　よろしく。",
+  "questions": [
+    {
+      "question": "おなまえは　なんですか。",
+      "answers": [
+        {
+          "text": "にほんじん",
+          "correct": false
+        },
+        {
+          "text": "のださん",
+          "correct": true
+        },
+        {
+          "text": "かいしゃいん",
+          "correct": false
+        },
+        {
+          "text": "にほん",
+          "correct": false
+        }
+      ]
+    }
+    ,{
+      "question": "くにごが　できません　か。",
+      "answers": [
+        {
+          "text": "にほんご",
+          "correct": false
+        },
+        {
+          "text": "にほんご、フランスご、えいご",
+          "correct": false
+        },
+        {
+          "text": "えいご",
+          "correct": false
+        },
+        {
+          "text": "アラビアご",
+          "correct": true
+        }
+      ]
+    }
+    ,{
+      "question": "おしごとは　なんですか。",
+      "answers": [
+        {
+          "text": "にほんじん",
+          "correct": false
+        },
+        {
+          "text": "のださん",
+          "correct": false
+        },
+        {
+          "text": "かいしゃいん",
+          "correct": true
+        },
+        {
+          "text": "にほん",
+          "correct": false
+        }
+      ]
+    }
+    ,{
+      "question": "おくには　なんですか。",
+      "answers": [
+        {
+          "text": "にほんじん",
+          "correct": false
+        },
+        {
+          "text": "のださん",
+          "correct": false
+        },
+        {
+          "text": "かいしゃいん",
+          "correct": false
+        },
+        {
+          "text": "にほん",
+          "correct": true
+        }
+      ]
+    }
+  ],
+  "idCanDo": "62b9d7cc8c02c34b1472319e"
+}
+###
+
+PUT https://tccmarcioconceito.herokuapp.com/exercises/624e110bcc50bdb65ac2b64a
+Content-Type: application/json
+
+###
+DELETE https://tccmarcioconceito.herokuapp.com/exercises/62bb7bbb5b6c41563b427a81
+
+
+
+###
+
+
+
+GET https://tccmarcioconceito.herokuapp.com/reports/
+###
+
+GET https://tccmarcioconceito.herokuapp.com/reports/625046b7efb16e2ea84e4c2b
+###
+
+POST https://tccmarcioconceito.herokuapp.com/reports/
+Content-Type: application/json
+
+{
+  "answers": [
+    {
+      "idAnswerSelected": "624e110bcc50bdb65ac2b64c",
+      "idQuestion": "624e110bcc50bdb65ac2b64b",
+      "idExercise": "624e110bcc50bdb65ac2b64a"
+    },
+    {
+      "idAnswerSelected": "624e110bcc50bdb65ac2b653",
+      "idQuestion": "624e110bcc50bdb65ac2b650",
+      "idExercise": "624e110bcc50bdb65ac2b64a"
+    },
+    {
+      "idAnswerSelected": "624ee0b2ce17e94b1c17d5ad",
+      "idQuestion": "624ee0b2ce17e94b1c17d5ac",
+      "idExercise": "624ee0b2ce17e94b1c17d5ab"
+    },
+    {
+      "idAnswerSelected": "624ee0b2ce17e94b1c17d5b5",
+      "idQuestion": "624ee0b2ce17e94b1c17d5b1",
+      "idExercise": "624ee0b2ce17e94b1c17d5ab"
+    }
+  ]
+}
+###
+###
+
+DELETE https://tccmarcioconceito.herokuapp.com/reports/62504626abf84cbe1ec91583
+###
+
+DELETE https://tccmarcioconceito.herokuapp.com/reports/ByCanDo/625d6774579f39e268934c12
+
+
+###
+
+
+
+GET https://tccmarcioconceito.herokuapp.com/users/
+###
+
+GET https://tccmarcioconceito.herokuapp.com/users/
+###
+
+GET https://tccmarcioconceito.herokuapp.com/users/ByLoginId/9r4ujTKnq0QzcPaC9PS2MJEIsh92
+###
+
+POST https://tccmarcioconceito.herokuapp.com/users/
+Content-Type: application/json
+
+{
+  "nickname": " ",
+  "nivelCEFR": " ",
+  "nivelJLPT": " ",
+  "nivelShirai": " ",
+  "role": "basic",
+  "loginId": "1"
+}
+###
+
+PUT https://tccmarcioconceito.herokuapp.com/users/ByLoginId/9r4ujTKnq0QzcPaC9PS2MJEIsh92
+Content-Type: application/json
+
+{
+  "nickname": "tsukimi",
+  "nivelCEFR": "B1",
+  "nivelJLPT": "N3",
+  "nivelShirai": "DAI10"
+}
+###
+
+DELETE https://tccmarcioconceito.herokuapp.com/users/61900753962d61bd83d82688

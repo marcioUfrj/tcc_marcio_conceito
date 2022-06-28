@@ -1,0 +1,87 @@
+show dbs
+show collections
+use dbs_name
+cls
+exit
+
+db.users.insertOne({name: "Sakura"})
+  insere o dado novo: formato JSON
+    ex1: address: { street: "street_name" }
+    ex2: hobbies: ["Running", "Swimming"]
+
+db.users.insertMany([{}, {}])
+
+db.users.find()
+  retorna todos os dados da collection
+
+  db.users.find({ name: "Hinata" })
+    retorna todos os dados com o msm input
+
+  db.users.find({ name: "Hinata" }, {name: 1, age: 1, _id: 0})
+    retorna todos os dados com o msm input
+    retorna apenas os campos do segundo objeto
+      1 => to get the field
+
+  db.users.find({name: { $eq: "Hinata" } })
+    retorna todos os dados com o msm input
+    Buscar por id:
+      {_id: ObjectId("")}
+  db.users.find({name: { $in: ["Hinata", "Naruto"] }})
+    retorna todos os dados correspondentes a lista input
+    retorna todos os dados com o msm input
+  db.users.find({name: { $nin: ["Hinata", "Naruto"] }})
+    retorna todos os dados correspondentes a lista input
+  db.users.find({name: { $ne: "Hinata" } })
+    retorna todos os dados diferentes do msm input
+  db.users.find({age: { $gt: 17 } })
+    retorna todos os dados diferentes do msm input
+    gt | gte | lt | lte
+  db.users.find({age: { $exists: true }})
+    retorna os documentos que possuem o campo
+    
+  db.users.find({ $or: [{age: { $gte: 18 }}, {name: "Hinata"}] })
+    retorna os documentos que possuem o campo
+    
+  db.users.find({ $expr: { $gt: ["$col1", "col2"]}})
+    retorna os documentos que possuem o campo
+
+  db.users.find({ "address.street": "Konoha 10" })
+    retorna todos os dados com o msm input
+
+db.users.find().limit(2)
+db.users.find().sort({ name: 1})
+  recebi um objeto
+  1 => ascendente | -1=> descendente
+
+
+db.users.find().skip(1)
+  recebe o numero de registros para skip
+
+db.users.findOne({})
+
+db.users.countDocuments({ name: "Hinata" })
+    retorna todos os dados com o msm input
+
+db.users.updateOne({age: 18}, { $set: { age: 20}})
+  efetuar update por id:
+    {_id: ObjectId("")}
+  db.users.updateOne({_id: ObjectId("")}, { $rename: { name: "firstName"}})
+    renome o campo
+  db.users.updateOne({_id: ObjectId("")}, { $unset: { age: ""}})
+    remove campo do objeto
+  db.users.updateOne({_id: ObjectId("")}, { $push: { hobbies: "Studing"}})
+    insere um dado novo no campo
+  db.users.updateOne({_id: ObjectId("")}, { $pull: { hobbies: "Studing"}})
+    insere um dado novo no campo
+
+db.users.updateMany({address: {$exists: true}}, { $unset: { address: ""}})
+
+db.users.replaceOne({age: 18}, {name: "John"})
+  sobreescreve o documento com o novo documento passado no segundo parametro
+
+db.users.deleteOne({name: "John"})
+db.users.deleteMany({name: "John"})
+
+
+db.users.updateOne({email: 'm@m'}, { $set: { role: 'admin'}})
+db.users.deleteOne({email: 'w2@w'})
